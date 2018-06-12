@@ -1,0 +1,54 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the diagonalDifference function below.
+def diagonalDifference(a):
+    
+    number_of_elements = len(a)
+    get_square_root = math.sqrt(number_of_elements)
+    matrix_format = get_square_root
+    
+    firstdiagonal = []
+    
+    count = 0
+    for i in range(matrix_format):
+        firstdiagonal.append(a[i+count])
+        count +=matrix_format
+        
+    secondiagonal = []
+    
+    a = list(reversed(a))
+    
+    count = 0
+    for i in range(matrix_format):
+        secondiagonal.append(a[i+count])
+        count +=matrix_format
+    
+    sum_of_firstdiagonal = sum(firstdiagonal)
+    sum_of_secondiagonal = sum(secondiagonal)
+    
+    result = sum_of_firstdiagonal + sum_of_secondiagonal
+    
+    return result
+    
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    a = []
+
+    for _ in range(n):
+        a.append(list(map(int, input().rstrip().split())))
+
+   
+    result = diagonalDifference(a)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
